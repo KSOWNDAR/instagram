@@ -13,6 +13,7 @@ gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 gem 'pg'
 gem 'bootstrap', '~> 4.1.1'
+gem 'devise'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
