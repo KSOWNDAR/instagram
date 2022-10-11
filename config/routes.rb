@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get '/dashboard' => "accounts#index"
   
-  resources :posts, conly: [:new,:create,:show]
+  resources :posts, only: [:new,:create,:show]
 
   root to: 'home#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
