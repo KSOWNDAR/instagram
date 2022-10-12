@@ -1,3 +1,22 @@
+<head>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(function(){
+    console.log("post like");
+   
+    $(".post-like").on("click", function(){
+        var post_id = $(this).data("id");
+
+        $.ajax({
+            url: "/post/like/"+post_id,
+            method: "GET"
+        }).done(function(response){
+            console.log(response);
+        })
+   })
+ });
+ </script>
+ </head>
 <div class = "container">
 <script src="https://kit.fontawesome.com/769209a579.js" crossorigin="anonymous"></script>
   <div class = "row">
@@ -6,9 +25,9 @@
          <div class = "insta-post">
           <div class = "post-meta">
             <% if post.account.profile_image.attached? %>
-               <%= link_to image_tag(post.account.profile_image, width: "50px", :class => "profile-pic"),profile_path(post.account.username) %>
+               <%= link_to image_tag(post.account.profile_image, width: "50px" , height:"50px", :class => "profile-pic"),profile_path(post.account.username) %>
             <% else %>
-               <img class="profile-pic" width="50px" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+               <img class="profile-pic" width="50px" height="50px" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
             <% end %>  
             <%= link_to post.account.username, profile_path(post.account.username), class: "text-dark" %>
           </div>
@@ -17,7 +36,6 @@
           <div class = "post-details">
              <div class = "post-actions">
                <i class = "fa fa-heart like-<%= post.id %> <%= 'active' if post_liked_by_user?(post.id) %>fa-2x post-like" data-id= "<%= post.id %>"></i>
-               
                <i class = "fa fa-comment fa-2x post-comment"></i>
             </div>
              <p><strong id = "post-<%= post.id %>-likes"><%= post.total_likes_count %> likes</strong></p>
@@ -34,9 +52,9 @@
        <div class = "account-summary">
         <p>
          <% if current_account.profile_image.attached? %>
-            <%= link_to image_tag(current_account.profile_image, width: "50px", :class => "profile-pic"),profile_path(current_account.username) %>
+            <%= link_to image_tag(current_account.profile_image, width: "50px", height:"50px", :class => "profile-pic"),profile_path(current_account.username) %>
          <% else %>
-            <img class="profile-pic" width="50px" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+            <img class="profile-pic" width="50px" height="50px" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
          <% end %>  
          <strong><%= current_account.username %></strong><br>
         </p> 
