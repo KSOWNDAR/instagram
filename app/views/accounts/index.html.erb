@@ -1,4 +1,5 @@
 <div class = "container">
+<script src="https://kit.fontawesome.com/769209a579.js" crossorigin="anonymous"></script>
   <div class = "row">
     <div class = "col-8">
        <% @posts.each do |post| %>
@@ -7,25 +8,43 @@
             <% if post.account.profile_image.attached? %>
                <%= link_to image_tag(post.account.profile_image, width: "50px", :class => "profile-pic"),profile_path(post.account.username) %>
             <% else %>
-               <%= link_to img(src="https://cdn-icons-png.flaticon.com/512/149/149071.png",:class => "img-circle", width: "50px"),profile_path(post.account.username)%>
+               <img class="profile-pic" width="50px" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
             <% end %>  
             <%= link_to post.account.username, profile_path(post.account.username), class: "text-dark" %>
           </div>
           <%= image_tag(post.image, class: "img img-fluid") %>
-
+          
           <div class = "post-details">
-             <p><%= post.total_likes %> likes</p>
+             <div class = "post-actions">
+               <i class = "fa fa-heart like-<%= post.id %> <%= 'active' if post_liked_by_user?(post.id) %>fa-2x post-like" data-id= "<%= post.id %>"></i>
+               
+               <i class = "fa fa-comment fa-2x post-comment"></i>
+            </div>
+             <p><strong id = "post-<%= post.id %>-likes"><%= post.total_likes_count %> likes</strong></p>
+             <p><strong id = "post-<%= post.id %>-comments"><%= link_to post.account.username,profile_path(post.account.username), class: "text-dark" %></p> </strong>
+             
              <%= simple_format post.description %>
+             
+             <p class = "text-muted" ><%= time_ago_in_words post.created_at %> ago </p>
           </div>
         </div>
     <% end %>
     </div> 
     <div class = "col-4">
        <div class = "account-summary">
-          <p><strong><%= current_account.username %></strong><br>
-          <%= current_account.full_name %>
+        <p>
+         <% if current_account.profile_image.attached? %>
+            <%= link_to image_tag(current_account.profile_image, width: "50px", :class => "profile-pic"),profile_path(current_account.username) %>
+         <% else %>
+            <img class="profile-pic" width="50px" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+         <% end %>  
+         <strong><%= current_account.username %></strong><br>
+        </p> 
+         <p><%= current_account.full_name %></p>
        </div>
        <div class = "follower-suggestions">
+       <%= link_to "View All", "#", class: "float-right text-dark"%>
+       <p class = "text-muted"><strong>Suggestions for you</strong></p>
        </div>
     </div>
   </div>

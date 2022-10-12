@@ -1,10 +1,10 @@
 <div class = "container">
   <div class = "row">
     <div class = "col-4">
-       <% if @account.profile_image.attached? %>
-        <%= image_tag(@account.profile_image, width: "200px", :class => "profile-pic") %>
+       <% if current_account.profile_image.attached? %>
+        <%= image_tag(current_account.profile_image, width: "200px", :class => "profile-pic") %>
        <% else %>
-        <img class="img-circle" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+        <img class="profile-pic" width="200px" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
        <% end %>
     </div>
     <div class = "col-8 text-left">

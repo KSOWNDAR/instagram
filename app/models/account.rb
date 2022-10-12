@@ -4,7 +4,8 @@ class Account < ApplicationRecord
   has_one_attached :profile_image
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :posts       
+  has_many :posts   
+  has_many :likes    
   
   def full_name
     "#{first_name} #{last_name}"
