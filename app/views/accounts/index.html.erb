@@ -4,9 +4,19 @@
        <% @posts.each do |post| %>
          <div class = "insta-post">
           <div class = "post-meta">
-             <%= post.account.username %>
+            <% if post.account.profile_image.attached? %>
+               <%= link_to image_tag(post.account.profile_image, width: "50px", :class => "profile-pic"),profile_path(post.account.username) %>
+            <% else %>
+               <%= link_to img(src="https://cdn-icons-png.flaticon.com/512/149/149071.png",:class => "img-circle", width: "50px"),profile_path(post.account.username)%>
+            <% end %>  
+            <%= link_to post.account.username, profile_path(post.account.username), class: "text-dark" %>
           </div>
           <%= image_tag(post.image, class: "img img-fluid") %>
+
+          <div class = "post-details">
+             <p><%= post.total_likes %> likes</p>
+             <%= simple_format post.description %>
+          </div>
         </div>
     <% end %>
     </div> 
