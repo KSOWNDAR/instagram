@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'post/like/:post_id' => 'likes#save_like', as: :like_post
   post "follow/account" => "accounts#follow_account", as: :follow_account
   resources :posts, only: [:new,:create,:show]
+  resources :comments, only: [:create]
 
   root to: 'home#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

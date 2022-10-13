@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
     before_action :set_account, only: [:profile]   
     def index 
         @posts = Post.active 
-
+        @comment = Comment.new 
         following_ids = Follower.where(follower_id: current_account.id).map(&:following_id) 
         following_ids << current_account.id 
         @follower_suggestions = Account.where.not(id: following_ids)
