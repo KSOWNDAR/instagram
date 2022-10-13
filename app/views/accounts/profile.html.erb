@@ -30,8 +30,8 @@
  <div class = "row profile-posts">
     <% @posts.each do |post| %>
       <div  class = "col-4">
-       <div class = "insta-post">
-          <%= image_tag(post.image, class: "img img-fluid") %>
+       <div class = "insta-post post-square">
+          <%= link_to image_tag(post.image, class: "img img-fluid"),post_path(post) %>
         </div>
        </div>
     <%end%>
