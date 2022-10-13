@@ -3,7 +3,7 @@
 
 <div class = "pic">
   <span class = "blink"><img src= "https://www.instagram.com/static/images/homepage/screenshots/screenshot4.png/a4fd825e3d49.png">
-  <img src = "https://www.instagram.com/static/images/homepage/screenshots/screenshot1.png/fdfe239b7c9f.png"></span>
+  <img class = "blinkpic", src = "https://www.instagram.com/static/images/homepage/screenshots/screenshot1.png/fdfe239b7c9f.png"></span>
 </div>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div id="wrapper">
@@ -22,7 +22,7 @@
             <%= f.label :remember_me %>
         <% end %>
       </div>
-      <%= f.submit "Log in" %>
+      <%= f.submit "Log in" , class: "signbutton"%>
     </div>
   </div>
 </div>
