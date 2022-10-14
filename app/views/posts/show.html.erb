@@ -17,6 +17,11 @@ $(function(){
  });
  </script>
  </head>
+ <div class="delete">
+  <% if current_account.posts.exists?(@post.id) %>
+    <%= link_to 'Delete Post', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</div>
 <div class = "container post-details">
 <script src="https://kit.fontawesome.com/769209a579.js" crossorigin="anonymous"></script>
   <div class = "row">

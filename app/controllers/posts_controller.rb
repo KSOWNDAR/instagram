@@ -20,7 +20,13 @@ class PostsController < ApplicationController
         @comment = Comment.new 
         @comments = Comment.includes(:account).where(post_id: @post.id)
     end
+    
+    def destroy 
+        @post = current_account.posts.find(params[:id])
+        @post.destroy 
 
+        redirect_to dashboard_path
+    end
     private 
 
     def set_post 
