@@ -6,7 +6,7 @@ class Account < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :posts   
   has_many :likes  
-  
+  validates_uniqueness_of :email
   def full_name
     "#{first_name} #{last_name}"
   end

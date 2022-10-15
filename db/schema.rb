@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_12_235133) do
+ActiveRecord::Schema.define(version: 2022_10_14_162843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,12 @@ ActiveRecord::Schema.define(version: 2022_10_12_235133) do
     t.index ["following_id"], name: "index_followers_on_following_id"
   end
 
+  create_table "hash_tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "likes", force: :cascade do |t|
     t.bigint "account_id"
     t.bigint "post_id"
@@ -91,6 +97,15 @@ ActiveRecord::Schema.define(version: 2022_10_12_235133) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_likes_on_account_id"
     t.index ["post_id"], name: "index_likes_on_post_id"
+  end
+
+  create_table "post_hash_tags", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "hash_tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hash_tag_id"], name: "index_post_hash_tags_on_hash_tag_id"
+    t.index ["post_id"], name: "index_post_hash_tags_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
