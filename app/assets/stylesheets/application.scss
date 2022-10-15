@@ -20,7 +20,7 @@
     align-items: center;
     list-style: none;
     display: flex;
-    margin-left: 650px;
+    margin-left: 420px;
 }
 
 .form-login{
@@ -129,6 +129,9 @@
     position: relative;
   }
   
+  .flex {
+    display: flex;
+  }
   .overlap-text a {
     position: absolute;
     top: 8px;

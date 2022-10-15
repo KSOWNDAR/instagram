@@ -43,7 +43,13 @@ $(function(){
        
       <div class = "post-details">
              <div class = "comments-feed">
-               <%= simple_format @post.description %>
+                <% @post.description.to_s.split(' ').each do |word| %>
+                  <% if word.start_with?('#') %>
+                    <%= link_to word, search_path(query: word) %>
+                  <%else %>
+                    <%= word %>
+                  <%end %>
+                <% end %>
               <%= render "posts/comments",  post: @post, comments: @comments  %>
             </div>
             <div class = "post-actions">

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/index'
   devise_for :accounts
 
   root 'accounts#index'
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   get '/profile/:username' => 'accounts#profile', as: :profile
   get 'post/like/:post_id' => 'likes#save_like', as: :like_post
   post "follow/account" => "accounts#follow_account", as: :follow_account
+  get 'search' => 'search#index'
   resources :posts, only: [:new,:create,:show, :destroy]
   resources :comments, only: [:create]
 
