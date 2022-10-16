@@ -29,9 +29,9 @@
  </div> 
  <div class = "row profile-posts">
     <% @posts.each do |post| %>
-      <div  class = "col-4">
-       <div class = "insta-post post-square">
-          <%= link_to image_tag(post.image, class: "img img-fluid"),post_path(post) %>
+      <div  class = "col-3">
+       <div class = "pics">
+          <%= link_to image_tag(post.image, class: "pics"),post_path(post) %>
         </div>
        </div>
     <%end%>

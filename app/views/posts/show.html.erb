@@ -26,8 +26,8 @@ $(function(){
 <script src="https://kit.fontawesome.com/769209a579.js" crossorigin="anonymous"></script>
   <div class = "row">
     <div class = "col-8">
-         <div class = "insta-post">
-          <%= image_tag(@post.image, class: "img img-fluid") if @post.image.attached? %>  
+         <div class = "home-pic">
+          <%= image_tag(@post.image, class: "home-pic") if @post.image.attached? %>  
         </div>
     </div> 
     <div class = "col-4">
@@ -42,14 +42,14 @@ $(function(){
       
        
       <div class = "post-details">
-             <div class = "comments-feed">
-                <% @post.description.to_s.split(' ').each do |word| %>
+             <% @post.description.to_s.split(' ').each do |word| %>
                   <% if word.start_with?('#') %>
                     <%= link_to word, search_path(query: word) %>
                   <%else %>
                     <%= word %>
                   <%end %>
                 <% end %>
+             <div class = "comments-feed">
               <%= render "posts/comments",  post: @post, comments: @comments  %>
             </div>
             <div class = "post-actions">

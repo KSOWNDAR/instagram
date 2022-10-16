@@ -63,9 +63,19 @@
     height: 500px;
   }
   
+  .home-pic{
+    height: 500px;
+    width: 710px;
+  }
 @-webkit-keyframes blinker {
     from {opacity: 1.0;}
     to {opacity: 0.5;}
+  }
+
+  .pics {
+    height: 200px;
+    padding: 15px;
+    width: 200px;
   }
   .blink{
       text-decoration: blink;
