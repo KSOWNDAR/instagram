@@ -1,11 +1,11 @@
+
 <div class = "search-page">
- <% if @posts.exists? %>
+ <% if @posts.exists? or @accounts.exists? %>
    <h1>Search Results</h1>
  <% else %>
-   <h1>Oop! No matching posts ...</h1>
+   <h1>Oop!  No matching posts ...</h1>
  <% end %>
 </div>
-
 <div class = "row profile-posts">
  <% @posts.each do |post| %>
   <div class = "pics">
@@ -13,3 +13,10 @@
   </div>
  <% end %>
 </div> 
+<hr>
+<div class = "follower-suggestions">
+<%= render 'post'%>
+</div>
+
+
+
