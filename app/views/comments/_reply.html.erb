@@ -1,0 +1,21 @@
+<div class = "comment" >
+    <% if reply.account.profile_image.attached? %>
+        <%= link_to image_tag(reply.account.profile_image, width: "30px" , height:"30px", :class => "profile-pic float-left m-r-15"),profile_path(reply.account.username) %>
+    <% else %>
+        <img class="profile-pic float-left m-r-15" width="30px" height="30px" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+    <% end %> 
+    
+    <%= reply.comment %>
+     <div class = "fl">
+    <p class = "text-muted m-l-30"><%= time_ago_in_words reply.created_at %> ago </p>
+    <a href = "#" class="comment-form-display"> Reply</a>
+    <div class = "comment-form">
+     <%= render partial: "comments/form", locals: {post: reply.post, parent: reply}%>
+   </div>
+   </div>
+    <% if reply.comments.any? %>
+     <% reply.comments.each do |reply| %> 
+      <div class ="sub-comment"><%= render partial: 'comments/reply', locals: { reply: reply } %></div>
+     <% end %>
+   <% end %>
+ </div> 

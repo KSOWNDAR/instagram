@@ -56,8 +56,11 @@ $(function(){
                   <%end %>
               <% end %>
              <p class = "text-muted" ><%= time_ago_in_words post.created_at %> ago </p>
-             <%= render "posts/comments",  post: post, comments: Comment.includes(:account).where(post_id: post.id)%>
-             <%= link_to post_path(post.id) do %>
+             <%= render "posts/comments",  post: post, comments: Comment.where(parent_id: nil).includes(:account).where(post_id: post.id).order(id: :desc) %>
+             <div class = "sub-comment">
+              <%= render "posts/comments",  post: post, comments: Comment.where(parent_id: :comment_id).includes(:account).where(post_id: post.id).order(id: :desc) %>
+             </div>
+            <%= link_to post_path(post.id) do %>
                  <span class = "com"><p>View all <%= post.comments.count %> comments</p></span>
               <% end %>
           </div>
@@ -90,7 +93,6 @@ $(function(){
         </p> 
        </div>
        <div class = "follower-suggestions">
-       <%= link_to "View All", "#", class: "float-right text-dark"%>
        <p class = "text-muted"><strong>Suggestions for you</strong></p>
        <%= render "accounts/follower_suggestions" %>
        </div>

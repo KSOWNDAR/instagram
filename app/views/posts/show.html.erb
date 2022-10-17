@@ -50,7 +50,10 @@ $(function(){
                   <%end %>
                 <% end %>
              <div class = "comments-feed">
-              <%= render "posts/comments",  post: @post, comments: @comments  %>
+              <%= render "posts/comments",  post: @post, comments: Comment.where(parent_id: nil).includes(:account).where(post_id: @post.id).order(id: :desc) %>
+              <div class = "sub-comment">
+               
+              </div>
             </div>
             <div class = "post-actions">
                <i class = "fa fa-heart like-<%= @post.id %> <%= 'active' if post_liked_by_user?(@post.id) %>fa-2x post-like" data-id= "<%= @post.id %>"></i>
@@ -61,16 +64,8 @@ $(function(){
              <p class = "text-muted" ><%= time_ago_in_words @post.created_at %> ago </p>
           </div>
            <div class = "comment-box">
-            <%= form_for @comment do |f| %>
-              <%= f.hidden_field :post_id, value: @post.id %>
-              <%= f.hidden_field :return_to, value: "post"%>
-              <div class = "input-group-append">
-               <%= f.text_field :comment, placeholder: "Add a comment...", class: "form-control post-comment" %>
-              </div>
-              <div class = "input-group-append"> 
-              <%= f.submit "Post", class: "btn btn-success float-right" %>
-              </div>
-            <% end %>
+            <%= render partial: "comments/form", locals:{ post: @post, parent: nil} %>
+          </div>
          </div>
     </div>
   </div>

@@ -5,6 +5,7 @@ class SearchController < ApplicationController
       @posts = Post.joins(:hash_tags).where(hash_tags: {name: query})
     else
       @posts = Post.where("description like ?", "%#{params[:query]}%")
-    end
+    end 
+    @accounts = Account.where("username like?","%#{params[:query]}%")
   end
 end

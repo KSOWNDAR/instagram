@@ -5,8 +5,28 @@
     <% else %>
         <img class="profile-pic float-left m-r-15" width="30px" height="30px" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
     <% end %> 
- <strong><%= link_to comment.account.username, profile_path(comment.account.username), class: "text-dark" %></strong>
- <%= comment.comment %>
- <p class = "text-muted m-l-30"><%= time_ago_in_words comment.created_at %> ago </p>
+  <strong><%= link_to comment.account.username, profile_path(comment.account.username), class: "text-dark" %></strong>
+  <%= comment.comment %>
+  <div class = "fl">
+  <p class = "text-muted m-l-30"><%= time_ago_in_words comment.created_at %> ago </p>
+  <a href = "#" class="comment-form-display">Reply</a>
+  <div class = "comment-form">
+     <%= render partial: "comments/form", locals: {post: comment.post, parent: comment}%>
+  </div>
+  </div>
+   <% if comment.comments.any? %>
+     <% comment.comments.each do |reply| %> 
+      <div class = "sub-comment"><%= render partial: 'comments/reply', locals: { reply: reply } %></div>
+     <% end %>
+   <% end %>
  </div> 
 <% end %> 
+
+<script>
+  document.querySelectorAll('.comment-form-display').forEach((el) => {
+    el.addEventListener('click', (ev) => {
+     ev.preventDefault();
+     el.nextElementSibling.style = 'display: block;'
+    })
+  })
+</script>

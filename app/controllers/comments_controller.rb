@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
     before_action :authenticate_account!
     
-
+    
     def create 
         @comment = Comment.new(comment_params)
         @comment.account_id = current_account.id if account_signed_in? 
@@ -18,6 +18,6 @@ class CommentsController < ApplicationController
     private 
     
     def comment_params
-        params.require(:comment).permit(:comment, :post_id, :return_to)
+        params.require(:comment).permit(:comment, :post_id, :return_to, :comments, :account_id, :parent, :parent_id)
     end
 end

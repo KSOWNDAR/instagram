@@ -24,6 +24,20 @@ body {
     overflow: scroll;
 }
 
+.fl{
+    padding: 5px;
+    display: flex;
+    a{
+        padding-left: 3px;
+    }
+}
+.sub-comment{
+    padding-left: 20px;
+}
+
+.comment-form{
+    display: none;
+}
 .profile-pic {
     border-radius: 50%;
 }
