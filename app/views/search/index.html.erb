@@ -1,22 +1,16 @@
-
+<div class = "search-results"><%= render "post"%></div>
 <div class = "search-page">
- <% if @posts.exists? or @accounts.exists? %>
-   <h1>Search Results</h1>
- <% else %>
-   <h1>Oop!  No matching posts ...</h1>
- <% end %>
-</div>
-<div class = "row profile-posts">
- <% @posts.each do |post| %>
-  <div class = "pics">
-    <%= link_to image_tag(post.image, class: "pics"),post_path(post) %>
+  <button class="comment-form-display"><span class = "btn">Accounts</span></button>
+  <div class = "comment-form">
+     <div class = "follower-suggestions"><%= render partial: "account" %></div>
   </div>
- <% end %>
-</div> 
-<hr>
-<div class = "follower-suggestions">
-<%= render 'post'%>
 </div>
 
-
-
+<script>
+  document.querySelectorAll('.comment-form-display').forEach((el) => {
+    el.addEventListener('click', (ev) => {
+     ev.preventDefault();
+     el.nextElementSibling.style = 'display: block;'
+    })
+  })
+</script>

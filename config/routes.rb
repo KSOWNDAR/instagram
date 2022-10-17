@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   get 'post/like/:post_id' => 'likes#save_like', as: :like_post
   post "follow/account" => "accounts#follow_account", as: :follow_account
   get 'search' => 'search#index'
+  get 'search' => 'search#accounts'
   resources :posts, only: [:new,:create,:show, :destroy]
   resources :comments, only: [:create]
-
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
