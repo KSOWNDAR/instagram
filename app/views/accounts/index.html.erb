@@ -45,7 +45,9 @@ $(function(){
                  <i class = "fa fa-comment fa-2x post-comment"></i>
                <% end %>
             </div>
-             <p><strong id = "post-<%= post.id %>-likes"><%= post.total_likes_count %> likes</strong></p>
+             <% if post.total_likes_count.present? and post.total_likes_count != 0 %>
+                <p><strong id = "post-<%= post.id %>-likes"><%= post.total_likes_count %> likes</strong></p>
+              <% end %>
              <p><strong id = "post-<%= post.id %>-comments"><%= link_to post.account.username,profile_path(post.account.username), class: "text-dark" %></p> </strong>
              
              <% post.description.to_s.split(' ').each do |word| %>
@@ -56,12 +58,14 @@ $(function(){
                   <%end %>
               <% end %>
              <p class = "text-muted" ><%= time_ago_in_words post.created_at %> ago </p>
-             <%= render "posts/comments",  post: post, comments: Comment.where(parent_id: nil).includes(:account).where(post_id: post.id).order(id: :desc) %>
+             <%= render "posts/comments",  post: post, comments: Comment.where(parent_id: nil).includes(:account).where(post_id: post.id).order(id: :desc).limit(2) %>
              <div class = "sub-comment">
-              <%= render "posts/comments",  post: post, comments: Comment.where(parent_id: :comment_id).includes(:account).where(post_id: post.id).order(id: :desc) %>
+              <%= render "posts/comments",  post: post, comments: Comment.where(parent_id: :comment_id).includes(:account).where(post_id: post.id).order(id: :desc).limit(2) %>
              </div>
             <%= link_to post_path(post.id) do %>
-                 <span class = "com"><p>View all <%= post.comments.count %> comments</p></span>
+                 <% if post.total_comments_count.present? and post.total_comments_count != 0 %>
+                   <span class = "com"><p>View all <%= post.comments.count %> comments</p></span>
+                  <% end %> 
               <% end %>
           </div>
            <div class = "comment-box">
