@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   get '/profile/:username' => 'accounts#profile', as: :profile
   get 'post/like/:post_id' => 'likes#save_like', as: :like_post
   post "follow/account" => "accounts#follow_account", as: :follow_account
-  get 'search' => 'search#index'
-  get 'search' => 'search#accounts'
+  get '/402' => 'errors#_not_found'
+  #get '*paths' => 'errors#_not_found'
+  resources :search
+  get "displayuser", to: "search#displayuser"
   resources :posts, only: [:new,:create,:show, :destroy]
   resources :comments, only: [:create]
   

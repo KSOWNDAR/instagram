@@ -8,10 +8,7 @@ class Account < ApplicationRecord
   has_many :likes  
   validates_uniqueness_of :email
   validates_uniqueness_of :username
-  validates :profile_image, format: {
-    with: %r{\.gif|jpg|png}i,
-    message: 'must be a url for gif, jpg, or png image.'
-  }
+  
   def full_name
     "#{first_name} #{last_name}"
   end

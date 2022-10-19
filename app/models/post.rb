@@ -16,7 +16,7 @@ class Post < ApplicationRecord
         image.destroy
         errors[:base] << 'Too big'
       elsif !image.blob.content_type.starts_with?('image/')
-        image.purge
+        image.destroy
         errors[:base] << 'Wrong format'
       end
     end

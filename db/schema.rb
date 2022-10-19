@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_16_150608) do
+ActiveRecord::Schema.define(version: 2022_10_19_040754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,11 +28,11 @@ ActiveRecord::Schema.define(version: 2022_10_16_150608) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "first_name", limit: 20
-    t.string "last_name", limit: 20
-    t.string "username", limit: 20
     t.text "description"
     t.string "website"
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
@@ -63,16 +63,6 @@ ActiveRecord::Schema.define(version: 2022_10_16_150608) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  create_table "comment_hierarchies", id: false, force: :cascade do |t|
-    t.integer "ancestor_id", null: false
-    t.integer "descendant_id", null: false
-    t.integer "generations", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["ancestor_id", "descendant_id", "generations"], name: "comment_anc_desc_udx", unique: true
-    t.index ["descendant_id"], name: "comment_desc_idx"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -128,6 +118,19 @@ ActiveRecord::Schema.define(version: 2022_10_16_150608) do
     t.integer "total_likes_count"
     t.integer "total_comments_count"
     t.index ["account_id"], name: "index_posts_on_account_id"
+  end
+
+  create_table "search_tables", force: :cascade do |t|
+    t.text "query"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.bigint "search_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["search_id"], name: "index_users_on_search_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

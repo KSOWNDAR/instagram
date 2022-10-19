@@ -1,16 +1,16 @@
-<div class = "search-results"><%= render "post"%></div>
-<div class = "search-page">
-  <button class="comment-form-display"><span class = "btn">Accounts</span></button>
-  <div class = "comment-form">
-     <div class = "follower-suggestions"><%= render partial: "account" %></div>
-  </div>
+<div class = "btnnav">
+ <%= link_to "Users",  displayuser_path, class: "signbutton" %>
+ <%= link_to "Posts",  search_index_path(query: $word), class: "signbutton" %>
 </div>
-
-<script>
-  document.querySelectorAll('.comment-form-display').forEach((el) => {
-    el.addEventListener('click', (ev) => {
-     ev.preventDefault();
-     el.nextElementSibling.style = 'display: block;'
-    })
-  })
-</script>
+<% if @posts.exists? %>
+   <h1>Posts</h1>
+ <% else %>
+   <h1>Oop!  No posts found...</h1>
+ <% end %>
+  <div class = "row profile-posts">
+ <% @posts.each do |post| %>
+  <div class = "pics">
+    <%= link_to image_tag(post.image, class: "pics"),post_path(post) %>
+  </div>
+ <% end %>
+</div> 

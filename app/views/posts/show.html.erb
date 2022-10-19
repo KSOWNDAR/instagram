@@ -44,7 +44,7 @@ $(function(){
       <div class = "post-details">
              <% @post.description.to_s.split(' ').each do |word| %>
                   <% if word.start_with?('#') %>
-                    <%= link_to word, search_path(query: word) %>
+                    <%= link_to word, search_index_path(query: word) %>
                   <%else %>
                     <%= word %>
                   <%end %>
