@@ -13,11 +13,10 @@ j = i + 20
 while ( i <= j) do
     new_account={
         id: i,
-        encrypted_password: "sowndar",
-        email: Faker::Internet.email,
+        username: Faker::Name.username,
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
-        username: Faker::Name.username,
+        email: Faker::Internet.email,
         description: Faker::Name.description,
         website: Faker::Name.website
     }

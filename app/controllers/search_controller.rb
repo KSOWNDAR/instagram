@@ -13,6 +13,7 @@ class SearchController < ApplicationController
   def displayuser 
     @accounts = Account.where("username like ?", "%#{$word}%")
   end
+  
   def show
     @user = User.new
     @accounts = Account.where("username like ?", "%#{params[:query]}%")

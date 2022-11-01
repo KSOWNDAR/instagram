@@ -36,7 +36,7 @@ $(function(){
             <% end %>   
             <%= link_to post.account.username, profile_path(post.account.username), class: "text-dark" %>
           </div>
-          <%= image_tag(post.image, class: "home-pic") %>
+          <%= image_tag(post.image, class: "home-pic")if post.image.attached? %>
           
           <div class = "post-details">
              <div class = "post-actions">

@@ -12,7 +12,9 @@ class PostsController < ApplicationController
         if @post.save
             redirect_to dashboard_path, flash: {notice: "Post was created successfully!" }
         else
-            redirect_to new_post_path, flash: { notice: "1.Post was not saved! Please upload file in jpg/jpeg/gif format \n 2.Image size must greater than 1 MB" }
+            redirect_to new_post_path, flash: { notice: 
+                "1.Post was not saved! Please upload file in jpg/jpeg/gif format 
+                2.Image size must greater than 1 MB" }
         end
     end
 
